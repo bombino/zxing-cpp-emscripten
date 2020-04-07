@@ -297,6 +297,7 @@ extern "C" {
     float x0, float y0, float x1, float y1, float x2, float y2, float x3, float y3 )) {
     vector<Ref<Result> > results;
     int res = -1;
+    string cell_result;
 
     Ref<Binarizer> binarizer;
     Ref<BinaryBitmap> binary;
@@ -347,16 +348,16 @@ extern "C" {
       res = 0;
 
     } catch (const ReaderException& e) {
-      // cell_result = "zxing::ReaderException: " + string(e.what());
+      cell_result = "zxing::ReaderException: " + string(e.what());
       res = -2;
     } catch (const zxing::IllegalArgumentException& e) {
-      // cell_result = "zxing::IllegalArgumentException: " + string(e.what());
+      cell_result = "zxing::IllegalArgumentException: " + string(e.what());
       res = -3;
     } catch (const zxing::Exception& e) {
-      // cell_result = "zxing::Exception: " + string(e.what());
+      cell_result = "zxing::Exception: " + string(e.what());
       res = -4;
     } catch (const std::exception& e) {
-      // cell_result = "std::exception: " + string(e.what());
+      cell_result = "std::exception: " + string(e.what());
       res = -5;
     }
 
@@ -379,6 +380,8 @@ extern "C" {
           xs[3], ys[3]
         );
       }
+    } else {
+      //decode_callback(cell_result.c_str(), cell_result.size(), 1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     }
 
     return res;

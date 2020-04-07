@@ -1,8 +1,20 @@
-# Building WebAssembly ZXing on Windows or Unix/Linux
+# ZXing in Javascript via Emscripten
 
-The repository is based on [ZXing Emscripten build](https://github.com/kig/zxing-cpp-emscripten).
+**NOTE: This repository contains Kevin Bombino's tweaks to get this to
+work.**
+
+Most of the credit goes to the upstream authors.
+
+I have updated this README to make clear how to build.
+
+The repository is based on the ones from the [upstream author](https://github.com/kig/zxing-cpp-emscripten).
+
+Original README follows
+
+---
 
 ## Emscripten Installation
+
 1. Download [emsdk-portable-64bit.zip](https://s3.amazonaws.com/mozilla-games/emscripten/releases/emsdk-portable-64bit.zip)
 2. Fetch the latest registry of available tools:
   

@@ -42,7 +42,7 @@ if (EMSCRIPTEN)
     set(CMAKE_CXX_CREATE_STATIC_LIBRARY "<CMAKE_AR> -o <TARGET> <LINK_FLAGS> <OBJECTS>")
 endif()
 
-set(CMAKE_CXX_FLAGS "-std=c++11 --bind -Oz -s RESERVED_FUNCTION_POINTERS=20 -s EXPORT_NAME=\"'ZXing'\" -s MODULARIZE=1 -s DISABLE_EXCEPTION_CATCHING=0 --memory-init-file 0 -s EXPORTED_FUNCTIONS=\"['_resize','_decode_qr','_decode_qr_multi','_decode_any','_decode_multi']\"")
+set(CMAKE_CXX_FLAGS "-std=c++11 --bind -Oz -s MODULARIZE=1 -s WASM=0 -s ASSERTIONS=1 -s RESERVED_FUNCTION_POINTERS=20 -s DISABLE_EXCEPTION_CATCHING=0 --memory-init-file 0 -s EXPORTED_FUNCTIONS=\"['_resize','_decode_qr','_decode_qr_multi','_decode_any','_decode_multi','_decode_codabar','_decode_code128','_decode_code39','_decode_code93','_decode_ean13','_decode_ean8','_decode_itf','_decode_multi_one_d','_decode_multi_upc_ean','_decode_upca','_decode_upce']\" -s EXTRA_EXPORTED_RUNTIME_METHODS=\"['addFunction']\"")
 
 # Add libzxing library.
 file(GLOB_RECURSE LIBZXING_FILES
@@ -59,9 +59,11 @@ add_definitions(-DNO_ICONV=1)
 # Add cli executable.
 file(GLOB_RECURSE ZXING_FILES
     "./emscripten/zxing.js.cpp"
+    "./core/src/*.cpp"
+    "./core/src/*.cc"
 )
 add_executable(zxing ${ZXING_FILES})
-target_link_libraries(zxing libzxing)
+target_link_libraries(zxing)
 
 # Add testrunner executable.
 find_package(CPPUNIT)

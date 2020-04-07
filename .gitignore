@@ -1,4 +1,11 @@
 .DS_Store
 /.idea/
 /build/
+*/CMakeCache.txt
+*/CMakeFiles/
+*/Makefile
+*/cmake_install.cmake
+*/libzxing.bc
+*/node_modules/
+*/package-lock.json
 
