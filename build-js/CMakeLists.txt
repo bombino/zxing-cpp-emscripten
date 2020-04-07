@@ -52,8 +52,8 @@ file(GLOB_RECURSE LIBZXING_FILES
     "./core/src/*.hh"
 )
 include_directories("./core/src/")
-# add_library(libzxing STATIC ${LIBZXING_FILES})
-# set_target_properties(libzxing PROPERTIES PREFIX "")
+add_library(libzxing STATIC ${LIBZXING_FILES})
+set_target_properties(libzxing PROPERTIES PREFIX "")
 add_definitions(-DNO_ICONV=1)
 
 # Add cli executable.
@@ -63,7 +63,7 @@ file(GLOB_RECURSE ZXING_FILES
     "./core/src/*.cc"
 )
 add_executable(zxing ${ZXING_FILES})
-target_link_libraries(zxing libzxing)
+target_link_libraries(zxing)
 
 # Add testrunner executable.
 find_package(CPPUNIT)
